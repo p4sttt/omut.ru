@@ -6,7 +6,6 @@ import { signIn } from 'next-auth/react';
 import type { FC } from 'react';
 import { createPortal } from 'react-dom';
 
-
 interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -67,9 +66,31 @@ export const Drawer: FC<DrawerProps> = ({ isOpen, onClose }) => {
                 Войдите в аккаунт, чтобы получить возможность оставлять
                 комментарии и писать статьи
               </h1>
-              <button onClick={() => signIn('google')}>Sign in with Google</button>
+              <button
+                className='inline-flex items-center gap-2 rounded bg-dark-700 p-4 text-light-100'
+                onClick={() => signIn('google')}
+              >
+                Войти через Google
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='h-6 w-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75'
+                  />
+                </svg>
+              </button>
             </div>
-            <button onClick={onClose} className='p-2 absolute top-4 right-4 rounded hover:bg-light/10 transition-colors'>
+            <button
+              onClick={onClose}
+              className='absolute right-4 top-4 rounded p-2 transition-colors hover:bg-light/10'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
