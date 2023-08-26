@@ -1,16 +1,15 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
+import { Drawer } from '@omut/components';
 import { Badge } from '@omut/ui';
 import { routes } from '@omut/utils/constants';
+import { RequiredAuth } from '@omut/utils/hocs';
 import { useDisclosure } from '@omut/utils/hooks';
-import { Drawer } from '@omut/widgets/Drawer';
 
 export const Header = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { data: session } = useSession();
 
   return (
     <>
@@ -19,25 +18,13 @@ export const Header = () => {
           <Link href={routes.home}>
             <Badge title='omut.ru' variant='logo' />
           </Link>
-          <div className='flex h-6 items-center justify-start gap-2.5'>
-            {session ? (
-              <Link
-                href={routes.profile}
-                className='inline-flex items-center gap-2 text-xl font-medium leading-normal text-light-100'
-              >
-                акк
-                <div className='h-2 w-2 rounded-full bg-light-100' />
-              </Link>
-            ) : (
-              <button
-                className='inline-flex items-center gap-2 text-xl font-medium leading-normal text-light-100'
-                onClick={onOpen}
-              >
-                войти
-                <div className='h-2 w-2 rounded-full bg-light-100' />
-              </button>
-            )}
-          </div>
+          <button
+            className='inline-flex h-6 items-center justify-start gap-2 text-xl font-medium leading-normal text-light-100'
+            onClick={onOpen}
+          >
+            <RequiredAuth withAuth={'акк'} withoutAuth={'войти'} />
+            <div className='h-2 w-2 rounded-full bg-light-100' />
+          </button>
         </div>
       </header>
       <Drawer isOpen={isOpen} onClose={onClose} />

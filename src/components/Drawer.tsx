@@ -2,9 +2,11 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { signIn } from 'next-auth/react';
 import type { FC } from 'react';
 import { createPortal } from 'react-dom';
+
+import { LoginForm, UserInfo } from '@omut/components';
+import { RequiredAuth } from '@omut/utils/hocs';
 
 interface DrawerProps {
   isOpen: boolean;
@@ -58,35 +60,10 @@ export const Drawer: FC<DrawerProps> = ({ isOpen, onClose }) => {
             initial='hidden'
             animate='visible'
             exit='hidden'
-            className='relative flex h-full w-[400px] items-end justify-end bg-dark-800 p-6'
+            className='relative h-full w-fit bg-dark-800 p-6 xl:min-w-[400px]'
             onClick={(e) => e.stopPropagation()}
           >
-            <div>
-              <h1 className='mb-6 w-full text-xl font-medium text-light-100'>
-                Войдите в аккаунт, чтобы получить возможность оставлять
-                комментарии и писать статьи
-              </h1>
-              <button
-                className='inline-flex items-center gap-2 rounded bg-dark-700 p-4 text-light-100'
-                onClick={() => signIn('google')}
-              >
-                Войти через Google
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='h-6 w-6'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75'
-                  />
-                </svg>
-              </button>
-            </div>
+            <RequiredAuth withAuth={<UserInfo />} withoutAuth={<LoginForm />} />
             <button
               onClick={onClose}
               className='absolute right-4 top-4 rounded p-2 transition-colors hover:bg-light/10'

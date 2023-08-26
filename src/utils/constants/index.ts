@@ -1,1 +1,4 @@
-export * from './routes';
+export const routes = {
+  home: '/',
+  profile: '/profile',
+};
