@@ -28,7 +28,7 @@ export const Drawer: FC<DrawerProps> = ({ isOpen, onClose }) => {
       x: 400,
       transition: {
         ease: 'easeIn',
-        duration: 0.16,
+        duration: 0.18,
       },
     },
     visible: {
@@ -52,7 +52,7 @@ export const Drawer: FC<DrawerProps> = ({ isOpen, onClose }) => {
           initial='hidden'
           animate='visible'
           exit='hidden'
-          className='fixed right-0 top-0 z-50 inline-flex h-screen w-screen justify-end'
+          className='fixed right-0 top-0 z-50 inline-flex h-full w-screen justify-end'
           onClick={onClose}
         >
           <motion.div

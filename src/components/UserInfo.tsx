@@ -8,7 +8,7 @@ export const UserInfo = () => {
 
   return (
     <div className='flex h-full flex-col items-start justify-end'>
-      <div className='mb-6 inline-flex w-full gap-2'>
+      <div className='mb-6 inline-flex w-full gap-3'>
         <Image
           src={session?.user?.image as string}
           height={64}
