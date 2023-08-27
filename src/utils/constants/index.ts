@@ -1,5 +1,5 @@
 export const routes = {
   home: '/',
   profile: '/profile',
-  article: (postId: string) => `/articles/${postId}`
+  article: (postId: string) => `/post/${postId}`
 };

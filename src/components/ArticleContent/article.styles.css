@@ -1,0 +1,17 @@
+.article-content {
+  h1 {
+    @apply text-lg font-medium capitalize text-light-100;
+  }
+
+  p {
+    @apply text-light-200;
+  }
+
+  ul {
+    @apply ml-3 list-disc text-light-200;
+  }
+
+  img {
+    @apply aspect-video w-full rounded;
+  }
+}
